@@ -121,9 +121,6 @@ The application uses a TMDb API key. For production use, you should:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-This project is for learning/demo purposes only.
 ## Acknowledgments
 
 - [The Movie Database (TMDb)](https://www.themoviedb.org/) for providing the movie data API
@@ -140,6 +137,10 @@ This project is for learning/demo purposes only.
 - [ ] Watchlist functionality
 - [ ] Social sharing features
 
+## License
+
+This project is for learning/demo purposes only.
+
 ---
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by Razan
