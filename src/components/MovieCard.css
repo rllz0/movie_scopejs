@@ -1,0 +1,110 @@
+.movie_list_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.movie_list_heading {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.movie_count {
+  color: #a0aec0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.movie_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 30px 40px;
+}
+
+/* Tablet Responsiveness */
+@media (max-width: 1024px) {
+  .movie_list_header {
+    padding: 20px 20px;
+  }
+
+  .movie_cards {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+    padding: 0 20px 40px;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .movie_list_header {
+    padding: 15px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .movie_list_heading {
+    font-size: 20px;
+  }
+
+  .movie_count {
+    font-size: 14px;
+  }
+
+  .movie_cards {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 0 15px 30px;
+  }
+}
+
+/* Small Mobile Responsiveness */
+@media (max-width: 480px) {
+  .movie_list_header {
+    padding: 12px 12px;
+  }
+
+  .movie_list_heading {
+    font-size: 18px;
+  }
+
+  .movie_count {
+    font-size: 13px;
+  }
+
+  .movie_cards {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    padding: 0 12px 25px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 320px) {
+  .movie_list_header {
+    padding: 10px 10px;
+  }
+
+  .movie_list_heading {
+    font-size: 16px;
+  }
+
+  .movie_count {
+    font-size: 12px;
+  }
+
+  .movie_cards {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 0 10px 20px;
+  }
+}
