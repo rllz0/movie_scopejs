@@ -1,23 +1,23 @@
 import "./Navbar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    if (value.trim()) {
-      onSearch(value.trim());
-    }
-  };
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedTerm(searchTerm.trim());
+    }, 500);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      onSearch(searchTerm.trim());
-    }
-  };
+    return () => {
+      clearTimeout(handler); 
+    };
+  }, [searchTerm]);
+
+  useEffect(() => {
+    onSearch(debouncedTerm);
+  }, [debouncedTerm, onSearch]);
 
   return (
     <nav className="navbar">
@@ -28,13 +28,8 @@ export default function Navbar({ onSearch }) {
           type="text"
           placeholder="Search movies..."
           value={searchTerm}
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="search_input"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearchSubmit(e);
-            }
-          }}
         />
       </div>
 
