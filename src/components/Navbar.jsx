@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,7 +12,7 @@ export default function Navbar({ onSearch }) {
     }, 500);
 
     return () => {
-      clearTimeout(handler); 
+      clearTimeout(handler);
     };
   }, [searchTerm]);
 
@@ -38,6 +39,7 @@ export default function Navbar({ onSearch }) {
         <a href="#popular">Popular</a>
         <a href="#top_rated">Top Rated</a>
         <a href="#upcoming">Upcoming</a>
+        <Link to="/about">About</Link>
       </div>
     </nav>
   );

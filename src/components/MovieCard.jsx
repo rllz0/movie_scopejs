@@ -1,15 +1,10 @@
 import "./MovieCard.css";
-import API_CONFIG from '../api';
-
+import { Link } from "react-router-dom";
+import API_CONFIG from "../api";
 
 export default function MovieCard({ movie }) {
   return (
-    <a
-      href={`https://www.themoviedb.org/movie/${movie.id}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="movie_card"
-    >
+    <Link to={`/movie/${movie.id}`} className="movie_card">
       <img
         src={`${API_CONFIG.imageBaseURL}/${movie.poster_path}`}
         alt="movie poster"
@@ -29,6 +24,6 @@ export default function MovieCard({ movie }) {
             : "No description available"}
         </p>
       </div>
-    </a>
+    </Link>
   );
 }

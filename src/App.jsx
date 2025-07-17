@@ -1,40 +1,43 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import MovieList from "./components/MovieList";
+import Home from "./pages/Home";
+import MovieDetails from "./pages/MovieDetails";
+import About from "./pages/About";
 import SearchResults from "./components/SearchResults";
 import { useState } from "react";
+import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
-  const [minRating] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sort] = useState({ by: "default", order: "asc" });
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
   return (
-    <div className="app">
-      <Navbar onSearch={handleSearch} />
-
-      {searchTerm ? (
-        <SearchResults searchTerm={searchTerm} />
-      ) : (
-        <>
-          {["now_playing", "popular", "top_rated", "upcoming"].map((type) => (
-            <MovieList
-              key={type}
-              type={type}
-              title={type
-                .replace("_", " ")
-                .replace(/\b\w/g, (l) => l.toUpperCase())}
-              minRating={minRating}
-              sort={sort}
-            />
-          ))}
-        </>
-      )}
-    </div>
+    <Router basename="/movie_scopejs">
+      <div className="app">
+        <Navbar onSearch={handleSearch} />
+        
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              debouncedSearchTerm && debouncedSearchTerm.trim() !== "" ? (
+                <SearchResults searchTerm={debouncedSearchTerm.trim()} />
+              ) : (
+                <Home />
+              )
+            } 
+          />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<div>Page not found</div>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
